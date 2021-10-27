@@ -17,6 +17,9 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use('/posts', postRoutes);
+app.use('/', (req, res) => {
+  res.send('Home Page');
+});
 
 mongoose.connect(process.env.MONGO_URI, { 
   useNewUrlParser: true,
