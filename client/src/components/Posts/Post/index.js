@@ -1,4 +1,6 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { deletePost, likePost } from '../../../actions/posts';
 import useStyles from './styles';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
@@ -8,6 +10,7 @@ import moment from 'moment';
 
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <Card className={classes.card}>
@@ -29,12 +32,11 @@ const Post = ({ post, setCurrentId }) => {
         <Typography className={classes.title} variant="body1" gutterBottom>{post.message}</Typography>
       </CardContent> 
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={() => {}} >
+        <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))} >
           <ThumbUpAltIcon fontSize="small"/>
-          Like
-          {post.likeCount}
+          {`Like ${post.likeCount}`}
         </Button>
-        <Button size="small" color="primary" onClick={() => {}} >
+        <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))} >
           <DeleteIcon fontSize="small"/>
           Delete
         </Button>
