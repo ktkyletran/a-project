@@ -1,38 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
-import Posts from './components/Posts';
-import Form from './components/Form';
-import useStyles from './styles';
-import { getPosts } from './actions/posts'
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Container } from '@mui/material';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Auth from './components/Auth';
 
 const App = () => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const [currentId, setCurrentId] = useState(null);
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
-
   return (
-    <Container maxwidth="lg" className="App">
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h2" align="center">A-Project</Typography>
-      </AppBar>
-      <Grow in>
-        <Container>
-          <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-            <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId} />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
-            </Grid>
-          </Grid>
-        </Container>
-      </Grow>
-    </Container>
+    <BrowserRouter>
+      <Container maxwidth="lg" className="App">
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/auth" exact component={Auth} />
+        </Switch>
+      </Container>
+    </BrowserRouter>
   );
 }
 
