@@ -24,6 +24,6 @@ export default makeStyles(() => ({
     margin: '1rem 0',
   },
   googleButton: {
-    marginBottom: '2rem',
+    margin: '0 0 1rem',
   },
 }));
