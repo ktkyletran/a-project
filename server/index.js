@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import postRoutes from './routes/posts.js';
+import userRoutes from './routes/user.js';
 
 dotenv.config();
 
@@ -17,9 +18,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use('/posts', postRoutes);
-app.use('/', (req, res) => {
-  res.send('Home Page');
-});
+app.use('/user', userRoutes);
 
 mongoose.connect(process.env.MONGO_URI, { 
   useNewUrlParser: true,
