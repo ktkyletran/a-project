@@ -3,10 +3,19 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@mui/material';
 import { GoogleLogin } from 'react-google-login';
+import { signIn, signUp } from '../../actions/auth'
 import InputField from '../InputField';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Icon from './Icon';
 import useStyles from './styles';
+
+const initialState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
 const Auth = () => {
   const classes = useStyles();
@@ -14,13 +23,20 @@ const Auth = () => {
   const history = useHistory();
   const [showPassword, setShowPassword] = useState(false)
   const [isSignup, setIsSignup] = useState(false)
+  const [formData, setFormData] = useState(initialState);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    if (isSignup) {
+      dispatch(signUp(formData, history));
+    } else {
+      dispatch(signIn(formData, history));
+    }
   };
 
-  const handleChange = () => {
-
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   };
   
   const handlePassword = () => setShowPassword((prevState) => !prevState);
