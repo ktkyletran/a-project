@@ -17,7 +17,7 @@ export const signIn = async (req, res) => {
 
     const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, process.env.SECRET, { expiresIn: '1h' });
 
-    res.status(200).json({ result: existingUser, token })
+    res.status(200).json({ userData: existingUser, token })
   } catch (err) {
     res.status(500).json({ message: 'Something went wrong. Please try again later' });
   }
@@ -35,11 +35,11 @@ export const signUp = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const newUser = await User.create({ firstName, lastName, email, password: hashedPassword });
+    const userData = await User.create({ firstName, lastName, name: `${firstName} ${lastName}`, email, password: hashedPassword });
 
-    const token = jwt.sign({ email: newUser.email, id: newUser._id }, process.env.SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ email: userData.email, id: userData._id }, process.env.SECRET, { expiresIn: '1h' });
 
-    res.status(200).json({ newUser, token })
+    res.status(200).json({ userData, token })
   } catch (err) {
     res.status(500).json({ message: 'Something went wrong. Please try again later' });
   }
