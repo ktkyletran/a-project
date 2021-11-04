@@ -6,6 +6,7 @@ export default makeStyles({
     paddingTop: '56.25%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
+    marginBottom: '1rem'
   },
   border: {
     border: 'solid',
@@ -23,7 +24,7 @@ export default makeStyles({
   },
   overlay: {
     position: 'absolute',
-    top: '20px',
+    top: '10px',
     left: '20px',
     color: 'white',
   },
@@ -43,6 +44,11 @@ export default makeStyles({
   },
   title: {
     padding: '0 16px',
+    textTransform: 'uppercase',
+    fontWeight: 'bold'
+  },
+  desc: {
+    color: '#353535'
   },
   cardActions: {
     padding: '0 16px 8px 16px',
