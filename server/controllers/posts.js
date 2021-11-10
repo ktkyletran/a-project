@@ -2,10 +2,15 @@ import PostMessage from '../models/postMessage.js';
 import mongoose from 'mongoose';
 
 export const getPosts = async (req, res) => {
-  try {
-    const postList = await PostMessage.find();
+  const { page } = req.query;
 
-    res.status(200).json(postList)
+  try {
+    const LIMIT = 4;
+    const startIndex = (Number(page) - 1) * LIMIT; // get the starting index of every page
+    const total = await PostMessage.countDocuments({});
+    const postList = await PostMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
+
+    res.status(200).json({ data: postList, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT) });
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
