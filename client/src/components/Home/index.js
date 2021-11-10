@@ -38,7 +38,7 @@ const Home = () => {
   const searchPost = () => {
     if (search) {
       dispatch(getPostsBySearch(search));
-      console.log(search)
+
       history.push(`/posts/search?query=${search.query || 'none'}&tag=${search.tag || 'none'}`)
     } else {
       history.push('/')
@@ -78,7 +78,7 @@ const Home = () => {
           </AppBar>  
           <Form currentId={currentId} setCurrentId={setCurrentId} />
           <Paper className={classes.pagination} elevation={6}>
-            <Paginate />
+            <Paginate page={page} />
           </Paper>
         </Grid>
       </Grid>
