@@ -17,14 +17,14 @@ const Home = () => {
   const query = useQuery();
   const history = useHistory();
   const page = query.get('page') || 1;
-  const searchQuery = query.get('searchQuery');
+  const searchQuery = query.get('query');
   const classes = useStyles();
   const [currentId, setCurrentId] = useState(null);
   const [search, setSearch] = useState({
     query: '',
     tag: ''
   });
-
+  console.log(searchQuery)
   useEffect(() => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
@@ -77,9 +77,11 @@ const Home = () => {
             <Button onClick={searchPost} color="primary" variant="contained"> Search </Button>
           </AppBar>  
           <Form currentId={currentId} setCurrentId={setCurrentId} />
+          {(!searchQuery && !search.tag) && (
           <Paper className={classes.pagination} elevation={6}>
             <Paginate page={page} />
           </Paper>
+          )}
         </Grid>
       </Grid>
     </Container>

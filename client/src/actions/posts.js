@@ -1,15 +1,17 @@
 import * as api from '../api';
-import { FETCH_ALL, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
+import { FETCH_ALL, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, START_LOAD, END_LOAD } from '../constants/actionTypes';
 
 // Action Creators
 export const getPosts = (page) => async (dispatch) => {
   try {
+    dispatch({ type: START_LOAD });
     const { data: { data, currentPage, numberOfPages } } = await api.fetchPosts(page);
 
     dispatch({
       type: FETCH_ALL,
       payload: { data, currentPage, numberOfPages },
     });
+    dispatch({ type: END_LOAD });
   } catch (err) {
     console.log(err);
   }
@@ -17,12 +19,14 @@ export const getPosts = (page) => async (dispatch) => {
 
 export const getPostsBySearch = ({ query, tag }) => async (dispatch) => {
   try {
+    dispatch({ type: START_LOAD });
     const { data: { data } } = await api.fetchPostsBySearch(query, tag);
 
     dispatch({
       type: FETCH_BY_SEARCH,
       payload: data,
     });
+    dispatch({ type: END_LOAD });
   } catch (err) {
     console.log(err);
   }
@@ -30,12 +34,14 @@ export const getPostsBySearch = ({ query, tag }) => async (dispatch) => {
 
 export const createPost = (postData) => async (dispatch) => {
   try {
+    dispatch({ type: START_LOAD });
     const { data } = await api.createPost(postData);
     
     dispatch({
       type: CREATE,
       payload: data,
     });
+    dispatch({ type: END_LOAD });
   } catch (err) {
     console.log(err);
   }
