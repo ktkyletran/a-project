@@ -6,7 +6,7 @@ export const getPost = (id) => async (dispatch) => {
   try {
     dispatch({ type: START_LOAD });
     const { data } = await api.fetchPost(id);
-    console.log(data)
+
     dispatch({
       type: FETCH_POST,
       payload: data,
@@ -47,10 +47,12 @@ export const getPostsBySearch = ({ query, tag }) => async (dispatch) => {
   }
 };
 
-export const createPost = (postData) => async (dispatch) => {
+export const createPost = (postData, history) => async (dispatch) => {
   try {
     dispatch({ type: START_LOAD });
     const { data } = await api.createPost(postData);
+
+    history.push(`/posts/${data._id}`);
     
     dispatch({
       type: CREATE,

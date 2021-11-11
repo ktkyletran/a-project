@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@mui/material';
 import { GoogleLogin } from 'react-google-login';
 import { signIn, signUp } from '../../actions/auth'

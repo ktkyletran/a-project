@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 import decode from 'jwt-decode';
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@mui/material';
 import useStyles from './styles';

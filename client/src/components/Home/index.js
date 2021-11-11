@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Grow, Grid, Paper, TextField, Button, AppBar } from '@mui/material';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getPosts, getPostsBySearch } from '../../actions/posts'
 import Posts from '../Posts';
@@ -24,7 +24,7 @@ const Home = () => {
     query: '',
     tag: ''
   });
-  console.log(searchQuery)
+
   useEffect(() => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
