@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { deletePost, likePost } from '../../../actions/posts';
 import useStyles from './styles';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase } from '@mui/material';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
