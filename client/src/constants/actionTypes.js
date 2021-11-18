@@ -1,5 +1,6 @@
 export const CREATE = 'CREATE';
 export const UPDATE = 'UPDATE';
+export const COMMENT = 'COMMENT';
 export const DELETE = 'DELETE';
 export const LIKE = 'LIKE';
 export const FETCH_POST = 'FETCH_POST';
